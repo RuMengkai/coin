@@ -8,8 +8,25 @@ var likeCoin = []
 var likeCoinHtml = []
 
 var config = (data)=>{
-	var arr = ['ETH/USDT','TTT/USDT','MOAC/USDT','NULS/USDT','EOS/USDT']
-	if (arr.indexOf(data,0)>=0) {
+	var arr = [
+		{
+			'name': 'ETH/USDT',
+			'range': 5
+		}, {
+			'name': 'TTT/USDT',
+			'range': 15
+		}, {
+			'name': 'MOAC/USDT',
+			'range': 5
+		}, {
+			'name': 'NULS/USDT',
+			'range': 6
+		}, {
+			'name':'EOS/USDT',
+			'range': 5
+		}
+	]
+	if (!!arr.find((item)=>{return item.name==data})) {
 		return true
 	}else{
 		return false
@@ -111,7 +128,7 @@ var sendEmail = (data)=>{
 			// to: 'rumengkai@aliyun.com',
 			to: '874968552@qq.com',
 			subject: '币行情波动',
-			html: '<table border="1"><tr><td>币种</td><td>交易对</td><td>涨跌幅</td><td>现价</td></tr>'+likeCoinHtml+'</table><p>查看详情<a href="http://www.manbiwang.com">满币网</a></p>'
+			html: '<table style="border: 1px solid #666;"><tr><td>币种</td><td>交易对</td><td>涨跌幅</td><td>现价</td></tr>'+likeCoinHtml+'</table><p>查看详情<a href="http://www.manbiwang.com">满币网</a></p>'
 		}, function (err, response) {
 			var date = new Date()
 			sendTime = date.getTime()
