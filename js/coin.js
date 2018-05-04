@@ -7,26 +7,28 @@ var sendTime = new Date().getTime()-1000*60*30
 var likeCoin = []
 var likeCoinHtml = []
 
+/* 关注的交易对 */
+var likeCionArr = [
+	{
+		'name': 'ETH/USDT',
+		'range': 5
+	}, {
+		'name': 'TTT/USDT',
+		'range': 10
+	}, {
+		'name': 'MOAC/USDT',
+		'range': 5
+	}, {
+		'name': 'NULS/USDT',
+		'range': 6
+	}, {
+		'name':'EOS/USDT',
+		'range': 5
+	}
+]
+
 var config = (data)=>{
-	var arr = [
-		{
-			'name': 'ETH/USDT',
-			'range': 5
-		}, {
-			'name': 'TTT/USDT',
-			'range': 15
-		}, {
-			'name': 'MOAC/USDT',
-			'range': 5
-		}, {
-			'name': 'NULS/USDT',
-			'range': 6
-		}, {
-			'name':'EOS/USDT',
-			'range': 5
-		}
-	]
-	if (!!arr.find((item)=>{return item.name==data})) {
+	if (!!likeCionArr.find((item)=>{return item.name==data})) {
 		return true
 	}else{
 		return false
@@ -34,7 +36,7 @@ var config = (data)=>{
 }
 
 
-
+/* 请求成功后处理函数 */
 var successFun = (data) => {
 	console.log('\r\ndata分隔线---------------------------------\r\n');
 	data = JSON.parse(data)
@@ -49,7 +51,7 @@ var successFun = (data) => {
 	})
 	likeCoin.map((item,index)=>{
 		console.log(item.chineseName+' | '+item.name+' | '+'涨跌幅：'+item.percent+'%'+' | '+'现价：'+item.price_USDT+'\r\n')
-		if (item.percent>5||item.percent<-5) {
+		if (Math.abs(item.percent)>likeCionArr[index]) {
 			flag = true 
 		}
 	})
@@ -107,7 +109,6 @@ var get = ()=>{
 			});
 	});
 }
-
 
 
 var sendEmail = (data)=>{
