@@ -51,7 +51,7 @@ var successFun = (data) => {
 	})
 	likeCoin.map((item,index)=>{
 		console.log(item.chineseName+' | '+item.name+' | '+'涨跌幅：'+item.percent+'%'+' | '+'现价：'+item.price_USDT+'\r\n')
-		if (Math.abs(item.percent)>likeCionArr[index]) {
+		if (Math.abs(item.percent)>likeCionArr[index].range) {
 			flag = true 
 		}
 	})
