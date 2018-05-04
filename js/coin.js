@@ -42,24 +42,29 @@ var config = (data)=>{
 /* 请求成功后处理函数 */
 var successFun = (data) => {
 	console.log('\r\ndata分隔线---------------------------------\r\n');
-	data = JSON.parse(data)
-	likeCoin =[]
-	likeCoinHtml = ''
-	var flag = false
-	data.dayPrices.map((item,index)=>{
-		if (config(item.name)) {
-			likeCoinHtml += '<tr><td>'+item.chineseName+'</td><td>'+item.name+'</td><td>'+item.percent+'</td><td>'+item.price_USDT+'</td></tr>' 
-			likeCoin.push(item)
+	try {
+		data = JSON.parse(data)
+		likeCoin =[]
+		likeCoinHtml = ''
+		var flag = false
+		data.dayPrices.map((item,index)=>{
+			if (config(item.name)) {
+				likeCoinHtml += '<tr><td>'+item.chineseName+'</td><td>'+item.name+'</td><td>'+item.percent+'</td><td>'+item.price_USDT+'</td></tr>' 
+				likeCoin.push(item)
+			}
+		})
+		likeCoin.map((item,index)=>{
+			console.log(item.chineseName+' | '+item.name+' | '+'涨跌幅：'+item.percent+'%'+' | '+'现价：'+item.price_USDT+'\r\n')
+			if (Math.abs(item.percent)>likeCionArr[index].range) {
+				console.log('波动项：'+item.name);
+				flag = true 
+			}
+		})
+		if (flag) {
+			sendEmail(likeCoin)
 		}
-	})
-	likeCoin.map((item,index)=>{
-		console.log(item.chineseName+' | '+item.name+' | '+'涨跌幅：'+item.percent+'%'+' | '+'现价：'+item.price_USDT+'\r\n')
-		if (Math.abs(item.percent)>likeCionArr[index].range) {
-			flag = true 
-		}
-	})
-	if (flag) {
-		sendEmail(likeCoin)
+	} catch (error) {
+		console.log(error);
 	}
 }
 
@@ -81,7 +86,11 @@ var post = ()=>{
 	}
 	var req = http.request(options, function (res) {
 		console.log('Status:', res.statusCode);
-		console.log('headers:', JSON.stringify(res.headers));
+		try {
+			console.log('headers:', JSON.stringify(res.headers));
+		} catch (error) {
+			console.log(error);
+		}
 		if (res.statusCode!=200) {
 			errorFun(res)
 		}
