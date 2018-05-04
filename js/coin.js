@@ -24,6 +24,9 @@ var likeCionArr = [
 	}, {
 		'name':'EOS/USDT',
 		'range': 5
+	}, {
+		'name': 'BSTN/ETH',
+		'range': 10
 	}
 ]
 
