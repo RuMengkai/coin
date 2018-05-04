@@ -105,7 +105,7 @@ var sendEmail = (data)=>{
 	if ((t-sendTime)<1000*60*30) {
 		console.log('发送邮件未超过30分钟')
 	}else{
-		console.log('发送邮件时间：'+data)
+		console.log('发送邮件时间：' + new Date())
 		transporter.sendMail({
 			from: '874968552@qq.com',
 			// to: 'rumengkai@aliyun.com',
@@ -132,7 +132,7 @@ var errorFun = (data)=>{
 	if (new Date().getTime()-sendTime<1000*60*30) {
 		console.log('发送邮件未超过30分钟')
 	}else{
-		console.log('发送邮件时间：'+data+'|'+data.getTime())
+		console.log('发送邮件时间：' + new Date())
 		transporter.sendMail({
 			from: '874968552@qq.com',
 			to: 'rumengkai@aliyun.com',
