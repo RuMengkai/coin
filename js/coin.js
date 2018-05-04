@@ -108,7 +108,8 @@ var sendEmail = (data)=>{
 		console.log('发送邮件时间：'+data)
 		transporter.sendMail({
 			from: '874968552@qq.com',
-			to: 'rumengkai@aliyun.com',
+			// to: 'rumengkai@aliyun.com',
+			to: '874968552@qq.com',
 			subject: '币行情波动',
 			html: '<table border="1"><tr><td>币种</td><td>交易对</td><td>涨跌幅</td><td>现价</td></tr>'+likeCoinHtml+'</table><p>查看详情<a href="http://www.manbiwang.com">满币网</a></p>'
 		}, function (err, response) {
