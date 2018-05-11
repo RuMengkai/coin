@@ -55,7 +55,7 @@ var successFun = (data) => {
 		})
 		likeCoin.map((item,index)=>{
 			console.log(item.chineseName+' | '+item.name+' | '+'涨跌幅：'+item.percent+'%'+' | '+'现价：'+item.price_USDT+'\r\n')
-			if (Math.abs(item.percent)>likeCionArr[index].range) {
+			if (Math.abs(item.percent)>likeCionArr.find((i)=>{return i.name==item.name}).range) {
 				console.log('波动项：'+item.name);
 				flag = true 
 			}
