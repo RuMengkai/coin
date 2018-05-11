@@ -14,7 +14,7 @@ var likeCionArr = [
 		'range': 5
 	}, {
 		'name': 'TTT/USDT',
-		'range': 10
+		'range': 20
 	}, {
 		'name': 'MOAC/USDT',
 		'range': 5
@@ -160,7 +160,7 @@ var errorFun = (data)=>{
 		}
 	});
 	if (new Date().getTime()-sendTime<1000*60*60) {
-		console.log('发送邮件未超过30分钟')
+		console.log('发送邮件未超过60分钟')
 	}else{
 		console.log('发送邮件时间：' + new Date())
 		transporter.sendMail({
