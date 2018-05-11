@@ -84,6 +84,9 @@ function onError(error) {
 /* 运行coin */
 coin()
 
+process.on('uncaughtException', function (err) {
+	console.error(err);
+});
 
 function onListening() {
   var addr = server.address();

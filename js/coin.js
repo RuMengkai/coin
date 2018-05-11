@@ -20,13 +20,13 @@ var likeCionArr = [
 		'range': 5
 	}, {
 		'name': 'NULS/USDT',
-		'range': 6
+		'range': 8
 	}, {
 		'name':'EOS/USDT',
-		'range': 5
+		'range': 8
 	}, {
 		'name': 'BSTN/ETH',
-		'range': 10
+		'range': 20
 	}
 ]
 
@@ -159,7 +159,7 @@ var errorFun = (data)=>{
 				pass: 'azlbofebaibgbdjh' //azlbofebaibgbdjh    mkaloibqrvdwbfib
 		}
 	});
-	if (new Date().getTime()-sendTime<1000*60*30) {
+	if (new Date().getTime()-sendTime<1000*60*60) {
 		console.log('发送邮件未超过30分钟')
 	}else{
 		console.log('发送邮件时间：' + new Date())
